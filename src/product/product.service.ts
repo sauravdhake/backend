@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Product } from './product.model';
 import {v4 as uuid} from 'uuid';
 import { CreateProductDto } from './dto/create-product.dto';
+import { FilterProductDto } from './dto/filter-product.dto';
 
 @Injectable()
 export class ProductService {
@@ -11,8 +12,12 @@ export class ProductService {
         return this.products;
     }
 
-    getProductById(product_id:string):Product{
+    getProductsWithFilters(filterProductDto:FilterProductDto):Product{
+        return
+    }
 
+    getProductById(product_id:string):Product{
+        return
     }
     createProduct(createTaskDto:CreateProductDto):Product{
             const {product_name,
@@ -33,6 +38,14 @@ export class ProductService {
 
             this.products.push(product);
             return product;
+        }
+
+        deleteProduct(product_id:string):void{
+
+        }
+
+        updateProduct(){
+            return
         }
 
     
