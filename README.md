@@ -1,7 +1,8 @@
 
 
 ## Description
-
+API_DESIGN DIAGRAM
+![Alt text](image.png)
 # BackendExercise
 // product controller=> 
 // add product API /api/v1/product 
