@@ -1,4 +1,4 @@
-import { IsNotEmpty } from "class-validator";
+import { IsNotEmpty, Validate } from "class-validator";
 
 export class CreateProductDto{
     @IsNotEmpty()
@@ -15,3 +15,6 @@ export class CreateProductDto{
     @IsNotEmpty()
     isactive:boolean
 }
+
+
+

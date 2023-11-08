@@ -8,6 +8,7 @@ import {v4 as uuid} from 'uuid';
 
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { UpdateProductDto } from './dto/update-product.dto';
 @Injectable()
 export class ProductService {
     constructor(@InjectRepository(productEntity) private repo: Repository<productEntity>) {
@@ -15,9 +16,9 @@ export class ProductService {
     }
     // private products:Product[] = [];
 
-    // getAllProducts():Product[]{
-    //     return this.products;
-    // }
+    async getAllProducts(){
+        return this.repo.find();
+    }
 
     // getProductsWithFilters(filterProductDto:FilterProductDto):Product{
     //     return
@@ -56,9 +57,16 @@ export class ProductService {
 
     //     }
 
-    //     updateProduct(){
-    //         return
-    //     }
+        async updateProduct(serial_no:string, attr: Partial<productEntity>){
+            const Product =await this.repo.findOneBy({serial_no: serial_no})
+
+            if(!Product){ 
+                throw new Error('product not found')
+            }
+
+            Object.assign(Product, attr)
+            return this.repo.save(Product)
+        }
 
     
 }

@@ -10,13 +10,14 @@ import { productEntity } from './product.entity';
 export class ProductController {
     constructor(private productService: ProductService) { }
 
-    // @Get('/products')
-    // getAllProducts(@Query() filterProductDto:FilterProductDto): Product[] {
-    //     if(Object.keys(filterProductDto).length){
-    //         return
-    //     }
-    //     return this.productService.getAllProducts();
-    // }
+    @Get('/products')
+    async getAllProducts() {
+        //@Query() filterProductDto:FilterProductDto
+        // if(Object.keys(filterProductDto).length){
+            
+        // }
+        return this.productService.getAllProducts();
+    }
 
     @Get('/product/serial_no/:serial_no')
     async getProductById(@Param('serial_no') serial_no:string): Promise<productEntity>{
@@ -33,10 +34,10 @@ export class ProductController {
     //     return this.productService.deleteProduct(id)
     // }
 
-    // @Patch('/product/serial_no/:serial_no')
-    // updateProduct(@Param('serial_no') id:string,
-    // @Body() updateProductDto:UpdateProductDto ):Product{
-    //     return
-    // }
+    @Patch('/product/serial_no/:serial_no')
+    updateProduct(@Param('serial_no') serial_no:string,
+    @Body() updateProductDto:UpdateProductDto ):Promise<productEntity>{
+        return this.productService.updateProduct(serial_no,updateProductDto)
+    }
 
 }
