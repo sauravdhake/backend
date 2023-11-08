@@ -1,7 +1,10 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
-export class Product{
+export class productEntity{
+    @Column()
+    serial_no:string;
+
     @PrimaryGeneratedColumn('uuid')
     id:string;
 
@@ -12,7 +15,7 @@ export class Product{
     description:string;
 
     @Column()
-    serial_no:string;
+    product_id:string;
 
     @Column()
     price:string;
