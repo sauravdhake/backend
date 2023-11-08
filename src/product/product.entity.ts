@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { OrderEntity } from "src/order/order.entity";
+import { Column, Entity, PrimaryGeneratedColumn ,ManyToOne} from "typeorm";
 
 @Entity()
 export class productEntity{
@@ -15,9 +16,6 @@ export class productEntity{
     description:string;
 
     @Column()
-    product_id:string;
-
-    @Column()
     price:string;
 
     @Column()
@@ -25,5 +23,8 @@ export class productEntity{
 
     @Column()
     isactive:boolean
+
+    @ManyToOne(() => OrderEntity, (order) => order.products)
+    order:OrderEntity;
 
 }

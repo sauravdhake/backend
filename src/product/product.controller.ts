@@ -25,8 +25,8 @@ export class ProductController {
     }
     @Post('/product')
     createProduct(
-        @Body() createTaskDto:CreateProductDto):Promise<productEntity>{
-        return this.productService.createProduct(createTaskDto)
+        @Body() createProductDto:CreateProductDto):Promise<productEntity>{
+        return this.productService.createProduct(createProductDto)
     }
 
     @Delete('/product/serial_no/:serial_no')

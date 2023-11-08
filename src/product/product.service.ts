@@ -1,14 +1,11 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Product } from './product.model';
 import {productEntity} from './product.entity'
-
 import { CreateProductDto } from './dto/create-product.dto';
 import { FilterProductDto } from './dto/filter-product.dto';
 import {v4 as uuid} from 'uuid';
-
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { UpdateProductDto } from './dto/update-product.dto';
+
 @Injectable()
 export class ProductService {
     constructor(@InjectRepository(productEntity) private repo: Repository<productEntity>) {
@@ -46,8 +43,7 @@ export class ProductService {
             }
           });
         
-        const product = this.repo.create({
-            product_id: uuid(),
+        const product = this.repo.create({          
             product_name,
             description,
             serial_no,
