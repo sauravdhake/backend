@@ -3,7 +3,7 @@ import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { AppModule } from './../src/app.module';
 
-describe('testing app with order', () => {
+describe('testing app with create product', () => {
   let app: INestApplication;
 
   beforeEach(async () => {
@@ -15,19 +15,23 @@ describe('testing app with order', () => {
     await app.init();
   });
 
-  it('create a order with status code 201', () => {
+  it('create a product with status code 201', () => {
     return request(app.getHttpServer())
-      .post('/api/v1/order')
+      .post('/api/v1/product')
       .send({
-        serial_no:"test",
-        qty:4
-        })
+        product_name:"hello",
+        description:"tapp",
+        serial_no:"hello",
+        price:"34",
+        qty:"4",
+        isactive:false
+    })
       .expect(201)
       .then((res) => {
-       const {serial_no,qty,id} = res.body;
+       const {serial_no,isactive,id} = res.body;
        expect(id).toBeDefined()
-       expect(serial_no).toEqual("test")
-       expect(qty).toEqual(4)
+       expect(serial_no).toEqual("hello")
+       expect(isactive).toEqual(true)
       })
   });
 });
