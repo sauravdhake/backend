@@ -29,10 +29,10 @@ export class ProductController {
         return this.productService.createProduct(createTaskDto)
     }
 
-    // @Delete('/product/serial_no/:serial_no')
-    // deleteProduct(@Param('serial_no') id:string):void{
-    //     return this.productService.deleteProduct(id)
-    // }
+    @Delete('/product/serial_no/:serial_no')
+    async deleteProduct(@Param('serial_no') serial_no:string){
+        return this.productService.deleteProduct(serial_no)
+    }
 
     @Patch('/product/serial_no/:serial_no')
     updateProduct(@Param('serial_no') serial_no:string,

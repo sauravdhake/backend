@@ -39,6 +39,12 @@ export class ProductService {
             price,
             qty,
             isactive} = createProductDto
+          const products= await this.getAllProducts()
+          products.map((item)=>{
+            if(item.serial_no === serial_no){
+                throw new NotFoundException(`serial_no  ${serial_no} already exist`)
+            }
+          });
         
         const product = this.repo.create({
             product_id: uuid(),
@@ -47,21 +53,28 @@ export class ProductService {
             serial_no,
             price,
             qty,
-            isactive
+            isactive:true
         });
     
         await this.repo.save(product)
         return product;
       }
-    //     deleteProduct(product_id:string):void{
 
-    //     }
+       async deleteProduct(serial_no:string){
+            const Product =await this.repo.findOneBy({serial_no: serial_no})
+            if(!Product){ 
+                throw new NotFoundException('product not found')
+            }
+            Product.isactive = false
+            return {message:"product deleted successfully"}
+            //return this.repo.save(Product)
+        }
 
         async updateProduct(serial_no:string, attr: Partial<productEntity>){
             const Product =await this.repo.findOneBy({serial_no: serial_no})
 
             if(!Product){ 
-                throw new Error('product not found')
+                throw new NotFoundException('product not found')
             }
 
             Object.assign(Product, attr)
