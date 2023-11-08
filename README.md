@@ -2,7 +2,8 @@
 
 ## Description
 API_DESIGN DIAGRAM
-![Alt text](image.png)
+![image](https://github.com/sauravdhake/backend/assets/114572284/7234203c-6da6-4c8f-b7d7-5de183f86111)
+
 # BackendExercise
 // product controller=> 
 // add product API /api/v1/product 
